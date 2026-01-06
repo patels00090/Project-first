@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Address | Gloosy Bloom</title>
+
+<style>
+body{
+  background:#12091a;
+  color:white;
+  font-family:Arial;
+}
+
+.box{
+  max-width:450px;
+  margin:100px auto;
+  background:#1f1430;
+  padding:40px;
+  border-radius:20px;
+}
+
+input,textarea,button{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+}
+
+button{
+  background:#ff4da6;
+  border:none;
+  color:white;
+  border-radius:25px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Delivery Address</h2>
+
+  <input id="fullName" placeholder="Full Name" required>
+  <input id="phone" placeholder="Phone" required>
+  <textarea id="address" placeholder="Address" required></textarea>
+  <input id="city" placeholder="City" required>
+  <input id="pincode" placeholder="Pincode" required>
+
+  <button onclick="Address()">Continue</button>
+</div>
+
+<script>
+/* 🔒 ADDRESS PAGE GUARD */
+if (
+  localStorage.getItem("isLoggedIn") !== "true" ||
+  !localStorage.getItem("buyNowProduct")
+) {
+  window.location.href = "homepage.html";
+}
+
+/* ✅ ADDRESS & CONTINUE */
+function Address(){
+  const data = {
+    name: document.getElementById("fullName").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    address: document.getElementById("address").value.trim(),
+    city: document.getElementById("city").value.trim(),
+    pincode: document.getElementById("pincode").value.trim()
+  };
+
+  if (!data.name || !data.phone || !data.address || !data.city || !data.pincode) {
+    alert("Please fill all address details");
+    return;
+  }
+
+  // go to payment
+  window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>
